@@ -38,6 +38,16 @@ bool setBitArray(bool bitArray[8], int rule) {
 	return true;
 }
 
+// This is a function I made to decompose the main function
+// this will print out the evoluation state given a bitArray
+// this can also be fleshed out to use later to store the evolution state
+void printEvoState(bool bitArray[8]) {	
+	printf("The evolution of all possible states are as follows:\n");
+	printf("|***|   |** |   |* *|   |*  |   | **|   | * |   |  *|   |   | ");
+	// for (int )
+}
+
+
 //convert a 3-bit state array to its 
 //associated index of the rule# bit array
 //   ex: {0 0 0} -> 0
@@ -83,15 +93,13 @@ int main() {
 		printf("Enter the rule # (0-255): ");
 		scanf("%d", &rule);
 	}
+
 	printf("\nThe bit array for rule #%d is ", rule);
 	for (int i = 7; i > -1; i--)
 		printf("%d", bitArray[i]);
 	printf("\n");
-    //TODO: Task 2 - read in a valid rule# and
-    //      generate the rule's 8-bit rule bit array 
-    //      print the bit array in correct binary number order
 
-
+	
     //TODO: Task 3 - use the rule bit array to report the evolution 
     //      step for all possible cell states.
     //      follow the format of the sample output exactly
