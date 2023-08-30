@@ -10,8 +10,11 @@ Author: Eduardo Morales
 #include <stdio.h>
 #include <stdbool.h> 
 #include <math.h>
-
-const int WORLD_SIZE = 65;
+#define WORLD_SIZE 65
+#define WELCOME_MESSAGE "Welcome to the Elementary Cellular Automaton!\n"
+#define INIT_MESSAGE "Initializing world & evolving...\n"
+#define EVOLUTION_MESSAGE "The evolution of all possible states are as follows:\n"
+#define EVOLUTION_STATES_MESSAGE "|***|   |** |   |* *|   |*  |   | **|   | * |   |  *|   |   |\n"
 
 typedef struct cell_struct{
     bool state[3]; //active status for [left, me, right] cells 
@@ -43,8 +46,8 @@ bool setBitArray(bool bitArray[8], int rule) {
 // this will print out the evoluation state given a bitArray
 // this can also be fleshed out to use later to store the evolution state
 void printEvoState(bool bitArray[8]) {	
-	printf("The evolution of all possible states are as follows:\n");
-	printf("|***|   |** |   |* *|   |*  |   | **|   | * |   |  *|   |   |\n");
+	printf(EVOLUTION_MESSAGE);
+	printf(EVOLUTION_STATES_MESSAGE);
 
 	for (int i = 7; i > -1; i--) {
 		char c = (bitArray[i]) ? '*' : ' ' ;
@@ -97,7 +100,7 @@ int main() {
 	int rule = -1;
 	bool bitArray[8];
 
-    printf("Welcome to the Elementary Cellular Automaton!\n");
+    printf(WELCOME_MESSAGE);
 	while (!setBitArray(bitArray, rule)) {
 		printf("Enter the rule # (0-255): ");
 		scanf("%d", &rule);
@@ -116,7 +119,7 @@ int main() {
     //      middle cell active, all other cells should be inactive; 
     //      make sure to set the state array for each cell.
     
-    printf("Initializing world & evolving...\n");
+    printf(INIT_MESSAGE);
 
 
     //TODO: Task 8 - evolve the world the user-specified number  
