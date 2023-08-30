@@ -9,6 +9,7 @@ Author: Eduardo Morales
 
 #include <stdio.h>
 #include <stdbool.h> 
+#include <math.h>
 
 const int WORLD_SIZE = 65;
 
@@ -43,8 +44,15 @@ bool setBitArray(bool bitArray[8], int rule) {
 // this can also be fleshed out to use later to store the evolution state
 void printEvoState(bool bitArray[8]) {	
 	printf("The evolution of all possible states are as follows:\n");
-	printf("|***|   |** |   |* *|   |*  |   | **|   | * |   |  *|   |   | ");
-	// for (int )
+	printf("|***|   |** |   |* *|   |*  |   | **|   | * |   |  *|   |   |\n");
+
+	for (int i = 7; i > -1; i--) {
+		char c = (bitArray[i]) ? '*' : ' ' ;
+		char *spacer = (i > 0) ? "    " : "";
+		printf(" |%c|%s", c, spacer);
+	} 
+
+	printf("\n\n");
 }
 
 
@@ -54,10 +62,11 @@ void printEvoState(bool bitArray[8]) {
 //   ex: {0 0 1} -> 1
 //   ex: {1 0 1} -> 5
 int stateToIndex(bool state[3]) {
-
-    //TODO: Task 4 - write the stateToIndex() function
-
-    return 0;
+	int idx = 0;
+	for (int i = 0; i < 3; i++) {
+		idx += state[i] * pow(2, 2 - i);
+	}
+	return idx;
 }
 
 //update the state array for each cell in the world array based on the
@@ -97,13 +106,10 @@ int main() {
 	printf("\nThe bit array for rule #%d is ", rule);
 	for (int i = 7; i > -1; i--)
 		printf("%d", bitArray[i]);
-	printf("\n");
+	printf("\n\n");
 
 	
-    //TODO: Task 3 - use the rule bit array to report the evolution 
-    //      step for all possible cell states.
-    //      follow the format of the sample output exactly
-
+    printEvoState(bitArray);
 
     //TODO: Task 6 - read in the total number of generation evolution 
     //      steps from the user and initialize the world with ONLY the 
